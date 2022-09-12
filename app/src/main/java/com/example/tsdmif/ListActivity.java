@@ -1,17 +1,24 @@
 package com.example.tsdmif;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tsdmif.JsonParse.Args;
+import com.example.tsdmif.list.Adapter;
 import com.example.tsdmif.list.ListAdapter;
 import com.example.tsdmif.list.ListViewModel;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 
 public class ListActivity extends AppCompatActivity {
-    ArrayList<ListViewModel> models = new ArrayList<ListViewModel>();
+    ArrayList<ListViewModel> models = new ArrayList<>();
+
+    String[][] row;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,50 +26,45 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
         //Получаем данные в переменной data данные для разбора в таблицу
         Bundle arguments = getIntent().getExtras();
-        String data = arguments.get("data").toString();
-
-
-        setInitialData();
+        try {
+            Args args = new Args(arguments.get("data").toString());
+            row = args.column2();
+        } catch (JSONException e) {
+            System.err.println("Ошибка в JSON");
+        }
+        setInitialDataColumn2();
         RecyclerView recyclerView = findViewById(R.id.list);
         // создаем адаптер
-        ListAdapter adapter = new ListAdapter(this, models);
+
+        Adapter adapter = new Adapter() {
+            @Override
+            public void click() {
+                Toast.makeText(ListActivity.this,
+                        "Диман хуй", Toast.LENGTH_LONG).show();
+            }
+        };
+        ListAdapter adapter1 = new ListAdapter(this, models,adapter);
+
         // устанавливаем для списка адаптер
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter1);
     }
 
-    private void setInitialData() {
 
 
-        models.add(new ListViewModel("0 из 2", "Компфыааыфыафыаф ", "3"));
-        models.add(new ListViewModel("44 из 55", "Монитор, хуевый", "1"));
-        models.add(new ListViewModel("0 из 2", "Моноблок, ебаный", "3"));
-        models.add(new ListViewModel("0 из 2", "Компфыааыфыафыаф ", "3"));
-        models.add(new ListViewModel("0 из 5", "Монитор, хуевый", "1"));
-        models.add(new ListViewModel("0 из 2", "Моноблок, ебаный", "3"));
-        models.add(new ListViewModel("0 из 2", "Компфыааыфыафыаф ", "3"));
-        models.add(new ListViewModel("0 из 2", "Компфыааыфыафыаф ", "3"));
-        models.add(new ListViewModel("0 из 5", "Монитор, хуевый", "1"));
-        models.add(new ListViewModel("0 из 2", "Моноблок, ебаный", "3"));
-        models.add(new ListViewModel("0 из 2", "Компфыааыфыафыаф ", "3"));
-        models.add(new ListViewModel("0 из 5", "Монитор, хуевый", "1"));
-        models.add(new ListViewModel("0 из 2", "Моноблок, ебаный", "3"));
-        models.add(new ListViewModel("0 из 2", "Компфыааыфыафыаф ", "3"));
-        models.add(new ListViewModel("0 из 5", "Монитор, хуевый", "1"));
-        models.add(new ListViewModel("0 из 2", "Моноблок, ебаный", "3"));
-        models.add(new ListViewModel("0 из 2", "Компфыааыфыафыаф ", "3"));
-        models.add(new ListViewModel("0 из 5", "Монитор, хуевый", "1"));
-        models.add(new ListViewModel("0 из 5", "Монитор, хуевый", "1"));
-        models.add(new ListViewModel("0 из 2", "Моноблок, ебаный", "3"));
-        models.add(new ListViewModel("0 из 2", "Компфыааыфыафыаф ", "3"));
-        models.add(new ListViewModel("0 из 5", "Монитор, хуевый", "1"));
-        models.add(new ListViewModel("0 из 2", "Моноблок, ебаный", "3"));
-        models.add(new ListViewModel("0 из 2", "Компфыааыфыафыаф ", "3"));
-        models.add(new ListViewModel("0 из 5", "Монитор, хуевый", "1"));
-        models.add(new ListViewModel("0 из 2", "Моноблок, ебаный", "3"));
-        models.add(new ListViewModel("0 из 2", "Компфыааыфыафыаф ", "3"));
-        models.add(new ListViewModel("0 из 5", "Монитор, хуевый", "1"));
-        models.add(new ListViewModel("0 из 2", "Моноблок, ебаный", "3"));
+    private void setInitialDataColumn2() {
 
+        for (int i = 0; i < row.length; i++) {
+            StringBuilder stringBuilder = new StringBuilder();
+            if (row[i].length > 1) {
+                for (int j = 0; j < row[i].length; j++) {
+                    stringBuilder.append(row[i][j] + " ");
+                }
+                String[] split = stringBuilder.toString().trim().split(" +");
+                models.add(new ListViewModel(split[0], split[1]));
+            } else {
+                models.add(new ListViewModel("нуль", row[i][0]));
 
+            }
+        }
     }
 }

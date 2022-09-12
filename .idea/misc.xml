@@ -3,8 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/vital/Desktop/TSDMiF/app/src/main/res/layout/activity_data.xml" value="0.35144927536231885" />
         <entry key="..\:/Users/vital/Desktop/TSDMiF/app/src/main/res/layout/activity_list.xml" value="0.35144927536231885" />
-        <entry key="..\:/Users/vital/Desktop/TSDMiF/app/src/main/res/layout/list_item.xml" value="0.1762917933130699" />
+        <entry key="..\:/Users/vital/Desktop/TSDMiF/app/src/main/res/layout/activity_main.xml" value="0.35144927536231885" />
+        <entry key="..\:/Users/vital/Desktop/TSDMiF/app/src/main/res/layout/list_item.xml" value="0.5" />
+        <entry key="..\:/Users/vital/Desktop/TSDMiF/app/src/main/res/layout/settings_activity.xml" value="0.35144927536231885" />
       </map>
     </option>
   </component>

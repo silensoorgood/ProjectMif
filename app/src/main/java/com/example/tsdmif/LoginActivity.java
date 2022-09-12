@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
     public void onClockButton(View view) {
 
         EditText pass= findViewById(R.id.editTextTextPassword);
