@@ -1,5 +1,6 @@
 package com.example.tsdmif;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -39,8 +40,10 @@ public class ListActivity extends AppCompatActivity {
         Adapter adapter = new Adapter() {
             @Override
             public void click() {
-                Toast.makeText(ListActivity.this,
-                        "Диман хуй", Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(getApplicationContext(), MainActivity2.class);
+                startActivity(intent);
+
             }
         };
         ListAdapter adapter1 = new ListAdapter(this, models,adapter);

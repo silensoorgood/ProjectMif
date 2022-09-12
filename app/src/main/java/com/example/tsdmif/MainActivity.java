@@ -60,7 +60,5 @@ public class MainActivity extends AppCompatActivity {
         backendManager = new BackendManager(getApplicationContext()); //создаем новое подключение к серверу
         backendManager.getDataFromBack(a, this, connector);
     }
-    public void onclickButtonQrCode(){
 
-    }
 }
