@@ -14,9 +14,9 @@ public class AnswerInBackEnd {
 
     @SerializedName("data")
     @Expose
-    private String data="";
+    private AnswerInBackEndData data;
 
-    public  String getData(){
+    public  AnswerInBackEndData getData(){
         return data;
     }
     public String getguid1с() {
@@ -35,7 +35,7 @@ public class AnswerInBackEnd {
         this.type = type;
     }
 
-    public void setData(String data){
+    public void setData(AnswerInBackEndData data){
         this.data=data;
     }
 

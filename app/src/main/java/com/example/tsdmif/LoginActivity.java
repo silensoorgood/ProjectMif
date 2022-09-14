@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tsdmif.DataExchange.AnswerFromBackEnd;
 import com.example.tsdmif.DataExchange.AnswerInBackEnd;
+import com.example.tsdmif.DataExchange.AnswerInBackEndData;
 import com.example.tsdmif.DataExchange.BackendManager;
 import com.example.tsdmif.DataExchange.ServerConnector;
 
@@ -47,7 +48,10 @@ public class LoginActivity extends AppCompatActivity {
             AnswerInBackEnd a = new AnswerInBackEnd();
             a.setType("password");
             a.setGuid1с(guidAPP);
-            a.setData(pass.getText().toString());
+            AnswerInBackEndData answerData= new AnswerInBackEndData();
+            answerData.setEvent("password");
+            answerData.setDataevent(pass.getText().toString());
+            a.setData(answerData);
 
             ServerConnector connector = new ServerConnector() {
                 @Override

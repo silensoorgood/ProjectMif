@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.camera.view.PreviewView;
 
 import com.example.tsdmif.DataExchange.AnswerFromBackEnd;
 import com.example.tsdmif.DataExchange.AnswerInBackEnd;
@@ -14,10 +15,11 @@ import com.example.tsdmif.DataExchange.ServerConnector;
 
 public class MainActivity extends AppCompatActivity {
     BackendManager backendManager;
-
+  
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

@@ -7,6 +7,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.tsdmif.BarCodeScanner.CameraFragment;
+
 public class DataActivity extends AppCompatActivity {
 
     @Override
