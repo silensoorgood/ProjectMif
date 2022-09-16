@@ -1,4 +1,5 @@
 package com.example.tsdmif.DataExchange;
+import com.google.gson.JsonElement;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -18,9 +19,9 @@ public class AnswerFromBackEnd {
     //данные для активности
     @SerializedName("data")
     @Expose
-    private String data;
+    private JsonElement data;
 
-    public String getData(){ return data;}
+    public JsonElement getData(){ return data;}
 
     public String getGuid() {
         return guid1с;
@@ -40,7 +41,7 @@ public class AnswerFromBackEnd {
         this.type = type;
     }
 
-    public void setData(String data) {this.data = data;}
+    public void setData(JsonElement data) {this.data = data;}
 
     public void setUserName(String userName){ this.userName=userName;}
 }

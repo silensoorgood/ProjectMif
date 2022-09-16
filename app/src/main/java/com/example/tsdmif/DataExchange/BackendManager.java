@@ -10,6 +10,9 @@ import androidx.preference.PreferenceManager;
 
 import com.example.tsdmif.ListActivity;
 import com.example.tsdmif.LoginActivity;
+import com.google.gson.Gson;
+
+import java.io.Serializable;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -75,8 +78,8 @@ public class BackendManager {
                         activity.finish();
 
                     } else if (answer.getType().equals("list")) {
-                        Intent intent = new Intent(activity.getApplicationContext(), ListActivity.class);
-                        intent.putExtra("data", answer.getData());
+                         Intent intent = new Intent(activity.getApplicationContext(), ListActivity.class);
+                        intent.putExtra("data",  answer.getData().toString());
                         activity.startActivity(intent);
                         activity.finish();
 

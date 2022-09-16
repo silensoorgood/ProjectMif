@@ -11,16 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tsdmif.DataExchange.ListFramePOJO;
 import com.example.tsdmif.R;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private  LayoutInflater inflater;
-    private  List<ListViewModel> models;
+    private ListFramePOJO models;
     private ListItemCallBack listItemCallBack;
 
-    public ListAdapter(Context context, List<ListViewModel> models, ListItemCallBack listItemCallBack) {
+    public ListAdapter(Context context, ListFramePOJO models, ListItemCallBack listItemCallBack) {
         this.models = models;
         this.inflater = LayoutInflater.from(context);
         this.listItemCallBack = listItemCallBack;
@@ -33,7 +34,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         view.setClickable(true);
 
 
-        if (models.get(0).a == null) {
+        if (models.data.get(0).get(1) == null) {
             TextView textView = view.findViewById(R.id.name);
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
             textView.setLayoutParams(layoutParams);
@@ -44,16 +45,16 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ListAdapter.ViewHolder holder, int position) {
-        ListViewModel model = models.get(position);// Получаем позицию и заполняем
+        ArrayList<String> model = models.data.get(position);// Получаем позицию и заполняем
 
-        holder.nameView.setText(model.a);
-        holder.dataView.setText(model.b);
+        holder.nameView.setText(model.get(0));
+        holder.dataView.setText(model.get(1));
         holder.setPosition(position);
     }
 
     @Override
     public int getItemCount() {
-        return models.size();
+        return models.data.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -66,8 +67,8 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         ViewHolder(View view, ListItemCallBack listItemCallBack) {
             super(view);
             position=0;
-            nameView = view.findViewById(R.id.data);
-            dataView = view.findViewById(R.id.name);
+            nameView = view.findViewById(R.id.name);
+            dataView = view.findViewById(R.id.data);
             view.setOnClickListener(view1 -> {
                 Animation animRotate = AnimationUtils.loadAnimation(view.getContext(), R.xml.anim);
                 view.startAnimation(animRotate);
